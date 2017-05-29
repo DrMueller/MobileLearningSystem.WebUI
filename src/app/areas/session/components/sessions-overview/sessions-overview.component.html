@@ -1,0 +1,17 @@
+<div class="sess-ov__div-commands">
+  <div class="row">
+    <button class="button" (click)="createSessionClicked()" class="btn btn-primary">
+    Create
+  </button>
+
+    <div class="sess-ov__btn-delete">
+      <button class="button" (click)="deleteSessionClicked()" class="btn btn-primary">
+    Delete
+    </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <ag-grid-angular [gridOptions]="gridOptions" class="sess-ov__aggrid ag-blue"></ag-grid-angular>
+</div>

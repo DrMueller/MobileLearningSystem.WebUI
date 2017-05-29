@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Component, ViewContainerRef } from '@angular/core';
+
+import { ToastConfigService } from 'app/common/core-services/toast/services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
-
-  constructor(private http: Http) {
-    http.get('http://mlswebservices.azurewebsites.net/api/values').subscribe((next) => {
-      this.title = next.json();
-    });
+  constructor(
+    vcr: ViewContainerRef,
+    toastConfigService: ToastConfigService) {
+    toastConfigService.setContainer(vcr);
   }
 }

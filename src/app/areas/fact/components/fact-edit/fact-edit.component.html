@@ -1,0 +1,76 @@
+<div *ngIf="form">
+  <div class="card">
+    <div class="card-header">
+      Session-Edit
+    </div>
+
+    <div class="card-body">
+      <div class="card-block">
+        <div class="card-title">
+          <h5>Actions</h5>
+        </div>
+        <div class="row">
+          <button type="button" (click)="saveButtonClicked()" class="btn btn-primary">Save</button>
+          <button type="button" (click)="cancelButtonClicked()" class="btn btn-primary">Cancel</button>
+        </div>
+      </div>
+
+      <form class="form-horizontal" [formGroup]="form.formGroup" novalidate>
+        <fieldset>
+          <div class="card-block">
+            <div class="card-title">
+              <h5>Core Data</h5>
+            </div>
+            <div class="form-group row">
+              <label class="col-1 col-form-label" for="factNameId">Name</label>
+              <div class="col-8">
+                <input class="form-control" id="factNameId" type="text" placeholder="Fact-Name (required)" formControlName="factNameControl"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="card-block">
+            <div class="card-title">
+              <h5>Question</h5>
+            </div>
+            <div class="form-group row">
+              <label class="col-1 col-form-label" for="questionTitleId">Title</label>
+              <div class="col-8">
+                <input class="form-control" id="questionTitleId" type="text" placeholder="Question Title (required)" formControlName="questionTitleControl"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-1 col-form-label" for="questionTextId">Text</label>
+              <div class="col-8">
+                <textarea class="form-control" id="questionTextId" rows="6" placeholder="Question Text (required)" formControlName="questionTextControl"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card-block">
+            <div class="card-title">
+              <h5>Answer</h5>
+            </div>
+            <div class="form-group row">
+              <label class="col-1 col-form-label" for="answerTextId">Text</label>
+              <div class="col-8">
+                <textarea class="form-control" id="answerTextId" rows="6" placeholder="Answer Text (required)" formControlName="answerTextControl"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-1 col-form-label" for="answerCommentId">Comment</label>
+              <div class="col-8">
+                <textarea class="form-control" id="answerCommentId" rows="6" placeholder="Answwer Comment" formControlName="answerCommentControl"></textarea>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

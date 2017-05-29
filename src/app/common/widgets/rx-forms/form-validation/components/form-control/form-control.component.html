@@ -1,0 +1,6 @@
+<div [formGroup]="formGroup">
+  <div [class.has-warning]="validatedControl.hasErrors">
+    <ng-content select=".form__contentselector--body">
+    </ng-content>
+  </div>
+</div>

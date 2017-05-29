@@ -1,0 +1,7 @@
+<div class="form-text">
+  <ul class="validation-display__ul--errors">
+    <li *ngFor="let validationError of validatedControl.errorContainer.validationErrors">
+      {{ validationError.errorMessage }}
+    </li>
+  </ul>
+</div>
