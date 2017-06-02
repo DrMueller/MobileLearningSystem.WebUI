@@ -90,7 +90,7 @@ export class SessionEditComponent implements OnInit {
           this.setFormControlDataIfReady();
         });
       } else {
-        this.session = this.sessionEditService.createNewSession();
+        this.session = new Session();
         this.setFormControlDataIfReady();
       }
     });

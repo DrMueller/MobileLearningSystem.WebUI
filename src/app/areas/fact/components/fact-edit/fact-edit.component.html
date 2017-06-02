@@ -1,5 +1,5 @@
 <div *ngIf="form">
-  <div class="card">
+  <md-card>
     <div class="card-header">
       Fact-Edit
     </div>
@@ -10,8 +10,8 @@
           <h5>Actions</h5>
         </div>
         <div class="row">
-          <button type="button" (click)="saveButtonClicked()" class="btn btn-primary">Save</button>
-          <button type="button" (click)="cancelButtonClicked()" class="btn btn-primary">Cancel</button>
+          <button type="button" md-raised-button color="primary" (click)="saveButtonClicked()" class="btn btn-primary">Save</button>
+          <button type="button" md-raised-button color="primary" (click)="cancelButtonClicked()" class="btn btn-primary">Cancel</button>
         </div>
       </div>
 
@@ -24,8 +24,10 @@
             <div class="form-group row">
               <label class="col-1 col-form-label" for="factNameId">Name</label>
               <div class="col-8">
-                <input class="form-control" id="factNameId" type="text" placeholder="Fact-Name (required)" formControlName="factNameControl"
-                />
+                <md-input-container>
+                  <input mdInput class="form-control" id="factNameId" type="text" placeholder="Fact-Name (required)" formControlName="factNameControl"
+                  />
+                </md-input-container>
               </div>
             </div>
           </div>
@@ -37,15 +39,19 @@
             <div class="form-group row">
               <label class="col-1 col-form-label" for="questionTitleId">Title</label>
               <div class="col-8">
-                <input class="form-control" id="questionTitleId" type="text" placeholder="Question Title (required)" formControlName="questionTitleControl"
-                />
+                <md-input-container>
+                  <input mdInput class="form-control" id="questionTitleId" type="text" placeholder="Question Title (required)" formControlName="questionTitleControl"
+                  />
+                </md-input-container>
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-1 col-form-label" for="questionTextId">Text</label>
               <div class="col-8">
-                <textarea class="form-control" id="questionTextId" rows="6" placeholder="Question Text (required)" formControlName="questionTextControl"></textarea>
+                <md-input-container>
+                  <textarea mdInput class="form-control" id="questionTextId" rows="6" placeholder="Question Text (required)" formControlName="questionTextControl"></textarea>
+                </md-input-container>
               </div>
             </div>
           </div>
@@ -58,19 +64,23 @@
             <div class="form-group row">
               <label class="col-1 col-form-label" for="answerTextId">Text</label>
               <div class="col-8">
-                <textarea class="form-control" id="answerTextId" rows="6" placeholder="Answer Text (required)" formControlName="answerTextControl"></textarea>
+                <md-input-container>
+                  <textarea mdInput class="form-control" id="answerTextId" rows="6" placeholder="Answer Text (required)" formControlName="answerTextControl"></textarea>
+                </md-input-container>
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-1 col-form-label" for="answerCommentId">Comment</label>
               <div class="col-8">
-                <textarea class="form-control" id="answerCommentId" rows="6" placeholder="Answer Comment" formControlName="answerCommentControl"></textarea>
+                <md-input-container>
+                  <textarea mdInput class="form-control" id="answerCommentId" rows="6" placeholder="Answer Comment" formControlName="answerCommentControl"></textarea>
+                </md-input-container>
               </div>
             </div>
           </div>
         </fieldset>
       </form>
     </div>
-  </div>
+  </md-card>
 </div>

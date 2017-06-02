@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
 
 // third-parties
 import { AgGridModule } from 'ag-grid-angular/main';
@@ -48,7 +49,8 @@ import * as app from '.';
     RxFormsModule.forRoot(),
     CoreServicesModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MaterialModule
   ],
   providers: [
     session.SessionsOverviewService,

@@ -18,12 +18,6 @@ export class FactEditService {
     return this.httpService.put(url, fact, Fact);
   }
 
-  public createNewFact(): Fact {
-    const s = new Fact();
-    s.name = 'New Fact';
-    return s;
-  }
-
   public getFact(id: string): Promise<Fact> {
     const url = `Fact\\${id}`;
     return this.httpService.get(url, Fact);

@@ -1,6 +1,25 @@
-<app-app-navigation-list></app-app-navigation-list>
-<div class="app__div-container">
-  <div class="container-fluid">
-    <router-outlet></router-outlet>
+<md-sidenav-container>
+  <md-toolbar color="primary">
+    <button class="app__button-icon" (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button> DrMuellers Mobile Learning System
+  </md-toolbar>
+
+  <md-sidenav #sidenav mode="push" opened="false">
+    <md-nav-list>
+      <md-list-item>
+        <a (click)="navigationClicked()" class="nav-link" routerLink="/sessions">Sessions</a>
+      </md-list-item>
+
+      <md-list-item>
+        <a (click)="navigationClicked()" class="nav-link" routerLinkActive="active" routerLink="/facts">Facts</a>
+      </md-list-item>
+    </md-nav-list>
+  </md-sidenav>
+  <div class="app__div-container">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
+
+</md-sidenav-container>

@@ -93,7 +93,7 @@ export class FactEditComponent implements OnInit {
           this.setFormControlDataIfReady();
         });
       } else {
-        this.fact = this.factEditService.createNewFact();
+        this.fact = new Fact();
         this.setFormControlDataIfReady();
       }
     });

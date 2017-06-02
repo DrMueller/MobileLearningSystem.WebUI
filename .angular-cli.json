@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
+        "styles.scss",
+        "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/ag-grid/dist/styles/ag-grid.css",
         "../node_modules/ag-grid/dist/styles/theme-blue.css",

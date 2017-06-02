@@ -18,12 +18,6 @@ export class SessionEditService {
     return this.httpService.put(url, session, Session);
   }
 
-  public createNewSession(): Session {
-    const s = new Session();
-    s.name = 'New Session';
-    return s;
-  }
-
   public getSession(id: string): Promise<Session> {
     const url = `Session\\${id}`;
     return this.httpService.get(url, Session);

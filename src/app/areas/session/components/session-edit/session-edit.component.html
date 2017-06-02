@@ -10,9 +10,9 @@
           <h5>Actions</h5>
         </div>
         <div class="row">
-          <button type="button" (click)="saveButtonClicked()" class="btn btn-primary">Save</button>
-          <button type="button" (click)="cancelButtonClicked()" class="btn btn-primary">Cancel</button>
-          <button type="button" (click)="addFactButtonCLicked()" class="btn btn-primary">Add Fact</button>
+          <button type="button" (click)="saveButtonClicked()" md-raised-button color="primary">Save</button>
+          <button type="button" (click)="cancelButtonClicked()" md-raised-button color="primary">Cancel</button>
+          <button type="button" (click)="addFactButtonCLicked()" md-raised-button color="primary">Add Fact</button>
         </div>
       </div>
 
@@ -25,8 +25,10 @@
             <div class="form-group row">
               <label class="col-1 col-form-label" for="sessionNameId">Name</label>
               <div class="col-8">
-                <input class="form-control" id="sessionNameId" type="text" placeholder="Session-Name (required)" formControlName="sessionNameControl"
-                />
+                <md-input-container>
+                  <input mdInput class="form-control" id="sessionNameId" type="text" placeholder="Session-Name (required)" formControlName="sessionNameControl"
+                  />
+                </md-input-container>
               </div>
             </div>
           </fieldset>
