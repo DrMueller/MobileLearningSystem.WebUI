@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { HttpService } from '../../../../common/core-services/http';
 import { GridOptions } from 'ag-grid';
 
+import { HttpService } from '../../../../common/core-services/http';
 import { ToastService } from 'app/common/core-services/toast';
 
 import { FactEditService, FactsOverviewService } from '../../services';
@@ -18,6 +18,7 @@ import { GridBuilder } from './grid.builder';
 export class FactsOverviewComponent implements OnInit {
 
   public gridOptions: GridOptions;
+  public sessionId: string | null;
 
   constructor(
     private router: Router,

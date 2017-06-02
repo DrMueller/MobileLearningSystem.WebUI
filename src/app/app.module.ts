@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // third-parties
 import { AgGridModule } from 'ag-grid-angular/main';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // core-services
 import { CoreServicesModule } from './common/core-services';
@@ -23,6 +24,9 @@ import * as login from './areas/login';
 import * as app from '.';
 
 @NgModule({
+  entryComponents: [
+    fact.FactSelectComponent
+  ],
   declarations: [
     app.AppComponent,
     session.SessionsOverviewComponent,
@@ -30,7 +34,8 @@ import * as app from '.';
     fact.FactsOverviewComponent,
     fact.FactEditComponent,
     appNav.AppNavigationListComponent,
-    login.LoginComponent
+    login.LoginComponent,
+    fact.FactSelectComponent,
   ],
   imports: [
     app.AppRoutingModule,
@@ -42,13 +47,15 @@ import * as app from '.';
     ]),
     RxFormsModule.forRoot(),
     CoreServicesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     session.SessionsOverviewService,
     session.SessionEditService,
     fact.FactEditService,
-    fact.FactsOverviewService
+    fact.FactsOverviewService,
+    fact.FactSelectService
   ],
   bootstrap: [app.AppComponent]
 })

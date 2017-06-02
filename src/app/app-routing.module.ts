@@ -1,4 +1,5 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { PathLocationStrategy } from '@angular/common';
 import { Routes, Router, RouterModule, PreloadAllModules } from '@angular/router';
 
 import * as session from './areas/session';
@@ -30,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: false,
+    useHash: true,
     preloadingStrategy: PreloadAllModules
   })],
   exports: [RouterModule],

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+
 import { RxFormBuilder, FormWithValidation, FormValidationService } from '../../../../common/widgets/rx-forms';
+
+import { FactSelectComponent } from '../../../fact';
 
 import { Session } from '../../../../models';
 import { SessionEditService } from '../../services';
@@ -20,7 +24,8 @@ export class SessionEditComponent implements OnInit {
     private route: ActivatedRoute,
     private sessionEditService: SessionEditService,
     private formBuilder: RxFormBuilder,
-    private formValidationService: FormValidationService) {
+    private formValidationService: FormValidationService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -38,12 +43,14 @@ export class SessionEditComponent implements OnInit {
     this.navigateToOverview();
   }
 
-  public newFactButtonClicked(): void {
-    this.router.navigate(['/facts/-1']);
-  }
+  public addFactButtonCLicked(): void {
+    const options = <NgbModalOptions>{
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false
+    };
 
-  public searchFactsButtonClicked(): void {
-    this.router.navigate(['/facts/']);
+    this.modalService.open(FactSelectComponent, options);
   }
 
   private gatherSession(): Session {
