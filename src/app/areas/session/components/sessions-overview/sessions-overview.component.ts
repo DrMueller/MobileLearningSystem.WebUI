@@ -28,6 +28,31 @@ export class SessionsOverviewComponent implements OnInit {
     this.loadOverview();
   }
 
+  public deleteSessionClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    this.toastService.showInfoToast('Deleting Sessions...');
+    selectedNodes.forEach(d => {
+      const selectedSession = <SessionOverviewEntry>d.data;
+
+      this.sessionEditService.deleteSession(selectedSession.sessionId!);
+      this.toastService.showSuccessToast('Sessions deleted.');
+    });
+
+    this.gridOptions.api!.removeItems(selectedNodes);
+  }
+
+  public runSessionClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    if (selectedNodes.length > 0) {
+      const entry = <SessionOverviewEntry>selectedNodes[0].data;
+      this.router.navigate(['/sessions', entry.sessionId, 'run']);
+    }
+  }
+
+  public createSessionClicked(): void {
+    this.navigateToDetails('-1');
+  }
+
   private loadOverview(): void {
     this.toastService.showInfoToast('Loading Overview...');
     this.sessionsOverviewService.loadOverview().then(data => {
@@ -56,22 +81,5 @@ export class SessionsOverviewComponent implements OnInit {
 
   private navigateToDetails(sessionId: string): void {
     this.router.navigate(['/sessions', sessionId]);
-  }
-
-  public deleteSessionClicked(): void {
-    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
-    this.toastService.showInfoToast('Deleting Sessions...');
-    selectedNodes.forEach(d => {
-      const selectedSession = <SessionOverviewEntry>d.data;
-
-      this.sessionEditService.deleteSession(selectedSession.sessionId!);
-      this.toastService.showSuccessToast('Sessions deleted.');
-    });
-
-    this.gridOptions.api!.removeItems(selectedNodes);
-  }
-
-  public createSessionClicked(): void {
-    this.navigateToDetails('-1');
   }
 }

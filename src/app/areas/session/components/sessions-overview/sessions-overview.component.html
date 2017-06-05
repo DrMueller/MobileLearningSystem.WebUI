@@ -6,15 +6,9 @@
   <md-card-content>
     <div class="sess-ov__div-commands">
       <div class="row">
-        <button md-raised-button color="primary" class="button" (click)="createSessionClicked()">
-    Create
-  </button>
-
-        <div class="sess-ov__btn-delete">
-          <button md-raised-button color="primary" (click)="deleteSessionClicked()">
-    Delete
-    </button>
-        </div>
+        <button md-raised-button color="primary" class="button" (click)="createSessionClicked()">Create</button>
+        <button md-raised-button color="primary" (click)="deleteSessionClicked()">Delete</button>
+        <button md-raised-button color="accent" (click)="runSessionClicked()">Run Session</button>
       </div>
     </div>
 

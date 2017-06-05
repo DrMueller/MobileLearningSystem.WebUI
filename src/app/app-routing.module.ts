@@ -12,6 +12,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'sessions/:id/run',
+    component: session.SessionRunComponent
+  },
+  {
     path: 'sessions/:id',
     component: session.SessionEditComponent
   },
