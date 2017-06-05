@@ -7,11 +7,11 @@ export class ValidatedControl {
     return this._errorContainer;
   }
 
-  public static create(controlName: string) {
-    return new ValidatedControl(controlName);
+  public static create(controlName: string, modelPropertyName: string | null = null) {
+    return new ValidatedControl(controlName, modelPropertyName);
   }
 
-  constructor(public controlName: string) {
+  constructor(public controlName: string, public modelPropertyName: string | null) {
   }
 
   public get hasErrors(): boolean {

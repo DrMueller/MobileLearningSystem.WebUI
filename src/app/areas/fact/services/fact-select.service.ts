@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { HttpService } from '../../../common/core-services/http';
 
-import { FactSelectentry } from '../models';
+import { FactSelectEntry } from '../../../models';
 
 @Injectable()
 export class FactSelectService {
 
   constructor(private httpService: HttpService) { }
 
-  public loadSelectEntries(): Promise<FactSelectentry[]> {
+  public getFactSelectEntries(): Promise<FactSelectEntry[]> {
     const url = 'FactSelect';
-    return this.httpService.getArray(url, FactSelectentry);
+    return this.httpService.getArray(url, FactSelectEntry);
   }
 }

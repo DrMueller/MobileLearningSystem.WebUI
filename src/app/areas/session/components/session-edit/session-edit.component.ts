@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
-import { RxFormBuilder, FormWithValidation, FormValidationService } from '../../../../common/widgets/rx-forms';
+import { EventMediatorService } from 'app/common/core-services/event-mediation';
 
 import { FactSelectComponent } from '../../../fact';
-
 import { Session } from '../../../../models';
 import { SessionEditService } from '../../services';
+
+
+import { SessionEditFactsComponent } from '../session-edit-facts';
+
 
 @Component({
   selector: 'app-session-edit',
@@ -17,20 +20,19 @@ import { SessionEditService } from '../../services';
 })
 export class SessionEditComponent implements OnInit {
   public session: Session;
-  public form: FormWithValidation;
+
+  @ViewChild('facts') public factsComp: SessionEditFactsComponent;
 
   constructor(
+    private eventMediatorService: EventMediatorService,
     private router: Router,
     private route: ActivatedRoute,
     private sessionEditService: SessionEditService,
-    private formBuilder: RxFormBuilder,
-    private formValidationService: FormValidationService,
     private modalService: NgbModal) {
   }
 
   ngOnInit() {
     this.subscribeRoute();
-    this.buildForm();
   }
 
   public cancelButtonClicked(): void {
@@ -43,43 +45,20 @@ export class SessionEditComponent implements OnInit {
     this.navigateToOverview();
   }
 
-  public addFactButtonCLicked(): void {
-    const options = <NgbModalOptions>{
-      size: 'lg',
-      backdrop: 'static',
-      keyboard: false
-    };
-
-    this.modalService.open(FactSelectComponent, options);
-  }
-
   private gatherSession(): Session {
-    const result = new Session();
-    result.name = this.form.formGroup.get('sessionNameControl')!.value;
+    const session = new Session();
+    session.id = this.session.id;
 
-    return result;
+    // TODO, why does the array loose its state in the facts component¿
+    this.eventMediatorService.notifyListeners('editDataRequested', this, session);
+    this.factsComp.editDataRequested(this, session);
+    return session;
   }
 
   private navigateToOverview(): void {
     this.router.navigate(['/sessions']);
   }
 
-  private setFormControlDataIfReady(): void {
-    if (this.session && this.form) {
-      this.form.formGroup.patchValue({
-        sessionNameControl: this.session.name
-      });
-    };
-  };
-
-  private buildForm(): void {
-    this.form = this.formBuilder.startBuildingFormGroup(this.formValidationService)
-      .withControl('sessionNameControl')
-      .buildControl()
-      .buildForm();
-
-    this.setFormControlDataIfReady();
-  }
 
   private subscribeRoute(): void {
     this.route.paramMap.subscribe((params) => {
@@ -87,11 +66,9 @@ export class SessionEditComponent implements OnInit {
       if (id && id !== '-1') {
         this.sessionEditService.getSession(id).then(data => {
           this.session = data;
-          this.setFormControlDataIfReady();
         });
       } else {
         this.session = new Session();
-        this.setFormControlDataIfReady();
       }
     });
   }

@@ -32,8 +32,7 @@ export class RxFormBuilder implements IRxFormBuilder {
   }
 
   public withControl(controlName: string): IFormControlBuilder {
-    this.validatedControls.push(ValidatedControl.create(controlName));
-    const formControlBuilder = new FormControlBuilder(controlName, this.controlErrorsMaps, this.formGroup, this);
+    const formControlBuilder = new FormControlBuilder(controlName, this.controlErrorsMaps, this.formGroup, this.validatedControls, this);
     return formControlBuilder;
   }
 

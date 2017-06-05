@@ -1,0 +1,13 @@
+<div class="card-block">
+  <div class="card-title">
+    <h5>Facts</h5>
+  </div>
+
+  <div class="row">
+    <button type="button" (click)="addFactsButtonClicked()" md-raised-button color="primary">Add Facts</button>
+    <button type="button" (click)="removeFactsButtonClicked()" md-raised-button color="primary">Remove Facts</button>
+
+  </div>
+
+  <ag-grid-angular [gridOptions]="gridOptions" class="sess-edit-facts__aggrid  ag-blue"></ag-grid-angular>
+</div>

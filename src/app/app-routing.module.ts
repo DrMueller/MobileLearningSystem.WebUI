@@ -20,13 +20,17 @@ const routes: Routes = [
     component: session.SessionsOverviewComponent
   },
   {
+    path: 'facts/select',
+    component: fact.FactSelectComponent
+  },
+  {
     path: 'facts/:id',
     component: fact.FactEditComponent
   },
   {
     path: 'facts',
     component: fact.FactsOverviewComponent
-  },
+  }
 ];
 
 @NgModule({

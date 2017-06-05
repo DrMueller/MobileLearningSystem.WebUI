@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridOptions } from 'ag-grid';
 
-import { FactSelectentry } from '../../models';
-import { FactSelectService } from '../../services';
+import { FactSelectEntry } from '../../../../models';
+import { ToastService } from '../../../../common/core-services/toast';
+
+import { FactSelectService, FactSelectMediatorService } from '../../services';
 import { GridBuilder } from './grid.builder';
 
 @Component({
@@ -15,19 +18,29 @@ import { GridBuilder } from './grid.builder';
 export class FactSelectComponent implements OnInit {
   public gridOptions: GridOptions;
 
-  constructor(private activeModal: NgbActiveModal, private factSelectService: FactSelectService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private factSelectService: FactSelectService,
+    private factSelectMediatorService: FactSelectMediatorService,
+    private toastService: ToastService) { }
 
   ngOnInit() {
     this.initializeGrid();
     this.loadData();
+    this.factSelectMediatorService.initialize();
+  }
+
+  public goToSessionButtenClicked(): void {
+    const sessionId = this.activatedRoute.snapshot.queryParamMap.get('sessionId');
+    this.router.navigate(['/sessions', sessionId]);
   }
 
   private loadData(): void {
-    this.factSelectService.loadSelectEntries().then(data => {
+    this.factSelectService.getFactSelectEntries().then(data => {
       this.gridOptions.api!.setRowData(data);
     });
   }
-
 
   private initializeGrid(): void {
     this.gridOptions = GridBuilder.createGridOptions();
@@ -37,7 +50,10 @@ export class FactSelectComponent implements OnInit {
   }
 
   private cellDoubleClicked($event: any): void {
-    const entry = <FactSelectentry>$event.data;
+    const entry = <FactSelectEntry>$event.data;
+    if (this.factSelectMediatorService.addSelection(entry)) {
+      this.toastService.showInfoToast('Fact added.');
+    }
   }
 
   private sizeColumnsIfReady() {

@@ -10,8 +10,7 @@ export class RequiredValidator implements IValidator {
   public createFunc(): ValidatorFn {
     return (c: AbstractControl): IValidatorFunctionResult => {
       let result: any = null;
-
-      if (JsObjUtilities.isNullOrUndefined(c.value)) {
+      if (this.checkIfValueIsEmptyNullorUndefined(c.value)) {
         result = {};
         result[this.key] = true;
       }
@@ -29,5 +28,17 @@ export class RequiredValidator implements IValidator {
 
   public get key(): string {
     return RequiredValidator.key;
+  }
+
+  private checkIfValueIsEmptyNullorUndefined(value: any): boolean {
+    if (JsObjUtilities.isNullOrUndefined(value)) {
+      return true;
+    }
+
+    if (value === '') {
+      return true;
+    }
+
+    return false;
   }
 }

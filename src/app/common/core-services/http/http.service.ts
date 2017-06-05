@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -21,10 +21,17 @@ export class HttpService {
     return this.processResponse(this.http.get(completeUrl, requestOptions), ctor);
   }
 
-  public getArray<T>(relativeUrl: string, ctor: IParameterlessConstructor<T>): Promise<T[]> {
+  public getArray<T>(
+    relativeUrl: string,
+    ctor: IParameterlessConstructor<T>,
+    urlSearchParams: URLSearchParams | null = null): Promise<T[]> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
 
     const requestOptions = this.createRequestOptions();
+    if (urlSearchParams) {
+      requestOptions.params = urlSearchParams;
+    }
+
     const arrayResult = this.processResponse<any[]>(this.http.get(completeUrl, requestOptions)).then(arr => {
       if (arr) {
         return arr.map(item => {

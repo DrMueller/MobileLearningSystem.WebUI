@@ -12,6 +12,22 @@ export class FormWithValidation {
     return this._formGroup;
   }
 
+  public setControlDataFromModel(model: any): void {
+    const boundControls = this.validatedForm.getControlsWithModelBinding();
+    boundControls.forEach(c => {
+      const modelValue = model[c.modelPropertyName!];
+      this._formGroup.controls[c.controlName].setValue(modelValue);
+    });
+  }
+
+  public setModelFromControls(model: any): void {
+    const boundControls = this.validatedForm.getControlsWithModelBinding();
+    boundControls.forEach(c => {
+      const controlValue = this._formGroup.controls[c.controlName].value;
+      model[c.modelPropertyName!] = controlValue;
+    });
+  }
+
   public getValidatedControl(controlName: string): ValidatedControl {
     return this.validatedForm.find(controlName);
   }

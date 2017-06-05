@@ -7,4 +7,5 @@ export interface IFormControlBuilder {
   buildControl(): IRxFormBuilder;
   withDefaultValue(value: any): IFormControlBuilder;
   withValidation(validator: IValidator): IValidationKeyErrorMapBuilder;
+  withModelBinding(propertyName: string): IFormControlBuilder;
 }

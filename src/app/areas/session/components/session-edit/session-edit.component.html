@@ -1,4 +1,4 @@
-<div *ngIf="form">
+<div *ngIf="session">
   <div class="card">
     <div class="card-header">
       Session-Edit
@@ -12,28 +12,11 @@
         <div class="row">
           <button type="button" (click)="saveButtonClicked()" md-raised-button color="primary">Save</button>
           <button type="button" (click)="cancelButtonClicked()" md-raised-button color="primary">Cancel</button>
-          <button type="button" (click)="addFactButtonCLicked()" md-raised-button color="primary">Add Fact</button>
         </div>
       </div>
 
-      <div class="card-block">
-        <div class="card-title">
-          <h5>Data</h5>
-        </div>
-        <form class="form-horizontal" [formGroup]="form.formGroup" novalidate>
-          <fieldset>
-            <div class="form-group row">
-              <label class="col-1 col-form-label" for="sessionNameId">Name</label>
-              <div class="col-8">
-                <md-input-container>
-                  <input mdInput class="form-control" id="sessionNameId" type="text" placeholder="Session-Name (required)" formControlName="sessionNameControl"
-                  />
-                </md-input-container>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
+      <app-session-edit-data [session]="session"></app-session-edit-data>
+      <app-session-edit-facts #facts [session]="session"></app-session-edit-facts>
     </div>
   </div>
 </div>

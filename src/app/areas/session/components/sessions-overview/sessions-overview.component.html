@@ -1,17 +1,25 @@
-<div class="sess-ov__div-commands">
-  <div class="row">
-    <button md-raised-button color="primary" class="button" (click)="createSessionClicked()">
+<md-card>
+  <md-card-title>
+    Sessions Overview
+  </md-card-title>
+
+  <md-card-content>
+    <div class="sess-ov__div-commands">
+      <div class="row">
+        <button md-raised-button color="primary" class="button" (click)="createSessionClicked()">
     Create
   </button>
 
-    <div class="sess-ov__btn-delete">
-      <button md-raised-button color="primary" (click)="deleteSessionClicked()">
+        <div class="sess-ov__btn-delete">
+          <button md-raised-button color="primary" (click)="deleteSessionClicked()">
     Delete
     </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="row">
-  <ag-grid-angular [gridOptions]="gridOptions" class="sess-ov__aggrid ag-blue"></ag-grid-angular>
-</div>
+    <div class="row">
+      <ag-grid-angular [gridOptions]="gridOptions" class="sess-ov__aggrid ag-blue"></ag-grid-angular>
+    </div>
+  </md-card-content>
+</md-card>

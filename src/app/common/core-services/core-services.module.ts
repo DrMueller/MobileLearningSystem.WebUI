@@ -6,12 +6,12 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { EnvironmentService } from './environment';
 import { ToastService, ToastConfigService } from './toast/services';
 import { HttpService } from './http';
+import { EventMediatorService } from './event-mediation';
 
 @NgModule({
   imports: [
     CommonModule,
     ToastModule.forRoot(),
-
   ],
   exports: [
   ],
@@ -20,7 +20,8 @@ import { HttpService } from './http';
     EnvironmentService,
     ToastService,
     ToastConfigService,
-    HttpService
+    HttpService,
+    EventMediatorService
   ]
 })
 export class CoreServicesModule { }

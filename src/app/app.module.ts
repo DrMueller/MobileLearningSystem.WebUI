@@ -18,7 +18,6 @@ import { RxFormsModule } from './common/widgets/rx-forms';
 // areas
 import * as session from './areas/session';
 import * as fact from './areas/fact';
-import * as appNav from './areas/navigation';
 import * as login from './areas/login';
 
 // app
@@ -34,9 +33,10 @@ import * as app from '.';
     session.SessionEditComponent,
     fact.FactsOverviewComponent,
     fact.FactEditComponent,
-    appNav.AppNavigationListComponent,
     login.LoginComponent,
     fact.FactSelectComponent,
+    session.SessionEditFactsComponent,
+    session.SessionEditDataComponent,
   ],
   imports: [
     app.AppRoutingModule,
@@ -57,7 +57,8 @@ import * as app from '.';
     session.SessionEditService,
     fact.FactEditService,
     fact.FactsOverviewService,
-    fact.FactSelectService
+    fact.FactSelectService,
+    fact.FactSelectMediatorService
   ],
   bootstrap: [app.AppComponent]
 })

@@ -1,0 +1,20 @@
+<div *ngIf="session">
+  <div class="card-block">
+    <div class="card-title">
+      <h5>Data</h5>
+    </div>
+    <form class="form-horizontal" [formGroup]="form.formGroup" novalidate>
+      <fieldset>
+        <div class="form-group row">
+          <label classF="col-1 col-form-label" for="sessionNameId">Name</label>
+          <div class="col-8">
+            <md-input-container>
+              <input mdInput class="form-control" id="sessionNameId" type="text" placeholder="Session-Name (required)" formControlName="sessionNameControl"
+              />
+            </md-input-container>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

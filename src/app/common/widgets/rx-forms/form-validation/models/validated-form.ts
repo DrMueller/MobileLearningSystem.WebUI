@@ -1,5 +1,7 @@
 import { ValidatedControl, ValidationError } from '.';
 
+import { JsObjUtilities } from '../../../../utilities';
+
 export class ValidatedForm {
   public constructor(private validatedControls: ValidatedControl[]) {
   }
@@ -10,7 +12,15 @@ export class ValidatedForm {
       return controlValidation;
     }
 
-    throw new Error(`Control ${controlName}' not found.`);
+    throw new Error(`Control ${controlName} not found.`);
+  }
+
+  public getControlsWithModelBinding(): ValidatedControl[] {
+    const result = this.validatedControls.filter(control => {
+      return !JsObjUtilities.isNullOrUndefined(control.modelPropertyName);
+    });
+
+    return result;
   }
 
   public setControlValidationErrors(controlName: string, validationErrors: ValidationError[]) {

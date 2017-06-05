@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppNavigationListComponent } from './app-navigation-list.component';
+import { SessionEditDataComponent } from './session-edit-data.component';
 
-describe('AppNavigationListComponent', () => {
-  let component: AppNavigationListComponent;
-  let fixture: ComponentFixture<AppNavigationListComponent>;
+describe('SessionEditDataComponent', () => {
+  let component: SessionEditDataComponent;
+  let fixture: ComponentFixture<SessionEditDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppNavigationListComponent ]
+      declarations: [ SessionEditDataComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppNavigationListComponent);
+    fixture = TestBed.createComponent(SessionEditDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
