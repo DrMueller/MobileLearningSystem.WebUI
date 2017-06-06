@@ -12,8 +12,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'sessions/:id/run',
-    component: session.SessionRunComponent
+    path: 'sessions/:id/learningrun',
+    component: session.SessionLearningRunComponent
+  },
+  {
+    path: 'sessions/:id/testrun',
+    component: session.SessionTestRunComponent
   },
   {
     path: 'sessions/:id',

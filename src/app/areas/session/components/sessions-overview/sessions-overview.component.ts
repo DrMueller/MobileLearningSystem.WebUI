@@ -53,7 +53,7 @@ export class SessionsOverviewComponent implements OnInit {
     const selectedNodes = this.gridOptions.api!.getSelectedNodes();
     if (selectedNodes.length > 0) {
       const entry = <SessionOverviewEntry>selectedNodes[0].data;
-      this.router.navigate(['/sessions', entry.sessionId, 'run']);
+      this.router.navigate(['/sessions', entry.sessionId, 'testrun']);
     }
   }
 
@@ -61,7 +61,7 @@ export class SessionsOverviewComponent implements OnInit {
     const selectedNodes = this.gridOptions.api!.getSelectedNodes();
     if (selectedNodes.length > 0) {
       const entry = <SessionOverviewEntry>selectedNodes[0].data;
-      this.router.navigate(['/sessions', entry.sessionId, 'run']);
+      this.router.navigate(['/sessions', entry.sessionId, 'learningrun']);
     }
   }
 

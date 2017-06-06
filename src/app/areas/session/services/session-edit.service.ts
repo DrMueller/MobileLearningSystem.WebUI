@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpService } from '../../../common/core-services/http';
 
-import { Session } from '../../../models';
+import { Session, Fact } from '../../../models';
 
 @Injectable()
 export class SessionEditService {
@@ -21,5 +21,10 @@ export class SessionEditService {
   public getSession(id: string): Promise<Session> {
     const url = `Session\\${id}`;
     return this.httpService.get(url, Session);
+  }
+
+  public getFactsBySessionId(sessionId: string): Promise<Fact[]> {
+    const url = `Session\\${sessionId}\\facts`;
+    return this.httpService.getArray(url, Fact);
   }
 }

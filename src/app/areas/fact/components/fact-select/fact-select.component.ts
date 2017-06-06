@@ -31,9 +31,19 @@ export class FactSelectComponent implements OnInit {
     this.factSelectMediatorService.initialize();
   }
 
-  public goToSessionButtenClicked(): void {
+  public goToSessionClicked(): void {
     const sessionId = this.activatedRoute.snapshot.queryParamMap.get('sessionId');
     this.router.navigate(['/sessions', sessionId]);
+  }
+
+  public selectFactsClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    selectedNodes.forEach(d => {
+      const entry = <FactSelectEntry>d.data;
+      this.factSelectMediatorService.addSelection(entry);
+    });
+
+    this.toastService.showInfoToast('Facts added.');
   }
 
   private loadData(): void {

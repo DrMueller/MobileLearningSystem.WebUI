@@ -1,0 +1,69 @@
+<div class="card">
+  <md-card>
+    <md-card-title>
+      <div class="card-header">
+        Test Session-Run
+      </div>
+    </md-card-title>
+
+
+    <md-card-content>
+      <div class="card-block">
+        <div class="row">
+          <button type="button" [disabled]="!isPreviousFactButtonEnabled" (click)="previousFactButtonClicked()" md-raised-button color="accent">Previous Fact</button>
+          <button type="button" [disabled]="!isNextFactButtonEnabled" (click)="nextFactButtonClicked()" disabled md-raised-button color="primary">Next Fact</button>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div *ngIf="currentFact">
+          <div class="row">
+            <h4 class="card-title">Fact {{ currentFactPosition }} / {{ factsAmount }}</h4>
+          </div>
+
+          <div class="card-text">
+            <div class="row">
+              <div class="col-1">
+                <label>Name:</label>
+              </div>
+              <div class="col-8">
+                {{ currentFact.name }}
+              </div>
+            </div>
+
+            <div class="card-text">
+              <div class="row">
+                <div class="col-1">
+                  <label>Question:</label>
+                </div>
+                <div class="col-8">
+                  {{ currentFact.question.title }}
+                </div>
+              </div>
+            </div>
+
+            <div class="card-text">
+              <div class="row">
+                <div class="col-1">
+                  <label>Answer:</label>
+                </div>
+                <div *ngIf="!isAnswerVisible">
+                  <div class="col-8">
+                    <button type="button" (click)="showAnswerClicked()" md-raised-button color="primary">Show Answer</button>
+                  </div>
+                </div>
+                <div *ngIf="isAnswerVisible">
+                  <div class="col-8">
+                    <md-input-container>
+                      <textarea readonly="true" mdInput class="form-control" id="answerTextId" rows="6"> {{ currentFact.answer.answerText }} </textarea>
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

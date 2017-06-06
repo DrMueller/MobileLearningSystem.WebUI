@@ -22,7 +22,6 @@ import * as login from './areas/login';
 
 // app
 import * as app from '.';
-import { SessionRunComponent } from './areas/session/components/session-run/session-run.component';
 
 @NgModule({
   entryComponents: [
@@ -38,7 +37,8 @@ import { SessionRunComponent } from './areas/session/components/session-run/sess
     fact.FactSelectComponent,
     session.SessionEditFactsComponent,
     session.SessionEditDataComponent,
-    SessionRunComponent,
+    session.SessionLearningRunComponent,
+    session.SessionTestRunComponent,
   ],
   imports: [
     app.AppRoutingModule,

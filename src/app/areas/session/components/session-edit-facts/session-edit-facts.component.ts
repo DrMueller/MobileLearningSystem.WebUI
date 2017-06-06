@@ -67,7 +67,6 @@ export class SessionEditFactsComponent implements OnInit, AfterViewInit {
 
   public editDataRequested(sender: any, data: any): void {
     const session = <Session>data;
-
     const sessionFacts = this.factSelectEntries.map(se => {
       const sf = new SessionFact();
       sf.factId = se.factId;
