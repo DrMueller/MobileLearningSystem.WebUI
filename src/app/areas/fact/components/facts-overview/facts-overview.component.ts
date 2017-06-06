@@ -31,6 +31,30 @@ export class FactsOverviewComponent implements OnInit {
     this.loadOverview();
   }
 
+  public deleteFactsClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    this.toastService.showInfoToast('Deleting Facts...');
+    selectedNodes.forEach(d => {
+      const selectedFact = <FactOverviewEntry>d.data;
+      this.factEditService.deleteFact(selectedFact.factId!);
+      this.toastService.showSuccessToast('Facts deleted.');
+    });
+
+    this.gridOptions.api!.removeItems(selectedNodes);
+  }
+
+  public openFactClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    if (selectedNodes.length > 0) {
+      const entry = <FactOverviewEntry>selectedNodes[0].data;
+      this.navigateToDetails(entry.factId!);
+    }
+  }
+
+  public createFactClicked(): void {
+    this.navigateToDetails('-1');
+  }
+
   private loadOverview(): void {
     this.toastService.showInfoToast('Loading Overview...');
     this.factsOverviewService.loadOverview().then(data => {
@@ -57,23 +81,9 @@ export class FactsOverviewComponent implements OnInit {
     this.navigateToDetails(entry.factId!);
   }
 
-  private navigateToDetails(sessionId: string): void {
-    this.router.navigate(['/facts', sessionId]);
+  private navigateToDetails(factId: string): void {
+    this.router.navigate(['/facts', factId]);
   }
 
-  public deleteFactsClicked(): void {
-    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
-    this.toastService.showInfoToast('Deleting Facts...');
-    selectedNodes.forEach(d => {
-      const selectedFact = <FactOverviewEntry>d.data;
-      this.factEditService.deleteFact(selectedFact.factId!);
-      this.toastService.showSuccessToast('Facts deleted.');
-    });
 
-    this.gridOptions.api!.removeItems(selectedNodes);
-  }
-
-  public createFactClicked(): void {
-    this.navigateToDetails('-1');
-  }
 }

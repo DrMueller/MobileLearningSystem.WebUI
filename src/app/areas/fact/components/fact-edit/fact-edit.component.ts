@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RxFormBuilder, FormWithValidation, FormValidationService } from '../../../../common/widgets/rx-forms';
+import { ToastService } from '../../../../common/core-services/toast';
 
 import { Fact } from '../../../../models';
 import { FactEditService } from '../../services';
@@ -20,7 +21,8 @@ export class FactEditComponent implements OnInit {
     private route: ActivatedRoute,
     private factEditService: FactEditService,
     private formBuilder: RxFormBuilder,
-    private formValidationService: FormValidationService) {
+    private formValidationService: FormValidationService,
+    private toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -33,8 +35,10 @@ export class FactEditComponent implements OnInit {
   }
 
   public saveButtonClicked(): void {
+    this.toastService.showInfoToast('Saving...');
     const fact = this.gatherFact();
     this.factEditService.saveFact(fact).then(f => {
+      this.toastService.showSuccessToast('Fact Saved!');
       this.navigateToOverview();
     });
   }

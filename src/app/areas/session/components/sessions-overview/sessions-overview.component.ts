@@ -41,7 +41,23 @@ export class SessionsOverviewComponent implements OnInit {
     this.gridOptions.api!.removeItems(selectedNodes);
   }
 
-  public runSessionClicked(): void {
+  public openSessionClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    if (selectedNodes.length > 0) {
+      const entry = <SessionOverviewEntry>selectedNodes[0].data;
+      this.navigateToDetails(entry.sessionId!);
+    }
+  }
+
+  public runTestSessionClicked(): void {
+    const selectedNodes = this.gridOptions.api!.getSelectedNodes();
+    if (selectedNodes.length > 0) {
+      const entry = <SessionOverviewEntry>selectedNodes[0].data;
+      this.router.navigate(['/sessions', entry.sessionId, 'run']);
+    }
+  }
+
+  public runLearningSessionClicked(): void {
     const selectedNodes = this.gridOptions.api!.getSelectedNodes();
     if (selectedNodes.length > 0) {
       const entry = <SessionOverviewEntry>selectedNodes[0].data;

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 import { EventMediatorService } from 'app/common/core-services/event-mediation';
+import { ToastService } from 'app/common/core-services/toast';
 
 import { FactSelectComponent } from '../../../fact';
 import { Session } from '../../../../models';
@@ -28,7 +29,8 @@ export class SessionEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private sessionEditService: SessionEditService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -40,8 +42,10 @@ export class SessionEditComponent implements OnInit {
   }
 
   public saveButtonClicked(): void {
+    this.toastService.showInfoToast('Saving...');
     const session = this.gatherSession();
     this.sessionEditService.saveSession(session);
+    this.toastService.showSuccessToast('Session saved...');
     this.navigateToOverview();
   }
 
